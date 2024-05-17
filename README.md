@@ -82,10 +82,10 @@ The peripherals used in this project are the DMA, ADC, Digital comparators, time
 
 
 <p align="center">
-  <img src="./images/software%20block%20diagram.png"/>
+  <img height="400" src="./images/software block diagram.png"/>
 </p>
 <p align="center">
-  <b>Figure 3: Software Block Diagram**</b>
+  <b>Figure 3: Software Block Diagram</b>
 </p>
 
 # **VII - Results and Discussion**
