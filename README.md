@@ -39,8 +39,9 @@ Microphones and conditioning circuits: 3 or 4 electret microphones are used to d
 
 <p align="center">
   <img src="./images/overview.jpg"/>
-
-  **Figure 1: Photo of the project hardware**
+</p>
+<p align="center">
+  <b>Figure 1: Photo of the project hardware</b>
 </p>
 
 ## Software components
@@ -74,14 +75,17 @@ The peripherals used in this project are the DMA, ADC, Digital comparators, time
 
 <p align="center">
   <img src="./images/hardware block diagram.png"/>
-
-  **Figure 2: Hardware block diagram**
 </p>
+<p align="center">
+  <b>Figure 2: Hardware block diagram</b>
+</p>
+
 
 <p align="center">
   <img src="./images/software%20block%20diagram.png"/>
-
-  **Figure 3: Software Block Diagram**
+</p>
+<p align="center">
+  <b>Figure 3: Software Block Diagram**</b>
 </p>
 
 # **VII - Results and Discussion**
@@ -93,6 +97,7 @@ Unfortunately, I could not solve for the angle of arrival with good enough accur
 
 <p align="center">
   <img src="./images/putty screenshot.png">
-
+</p>
+<p align="center">
   <b>Figure 4: Putty screenshot of the project at work</b>
 </p>
