@@ -22,6 +22,7 @@ We can divide the project into 2 parts, the hardware circuit–which provides a 
 Microphones and conditioning circuits: 3 or 4 electret microphones are used to determine the angle in 2- or 3-dimensions of the noise source. A bias voltage is applied to each microphone to bias the internal FET device. The output is AC coupled to an active half-wave filter and amplifier circuit. The outputs of the 3 or 4 amplifiers (one LM2902 device) are connected to 4 analog microcontroller inputs.
 
 | Part | Use | Quantity |
+|------|-----|----------|
 | LM2902 (quad op-amp) | Used to amplify the microphone signals | 1   |
 | 2.2kΩ, 5% resistor | Used as a mic bias | 4   |
 | 1kΩ, 5% resistor | Used in the inverting input of the op-amp. Helps to provide the gain of 100 | 4   |
@@ -49,6 +50,7 @@ Microphones and conditioning circuits: 3 or 4 electret microphones are used to d
 The peripherals used in this project are the DMA, ADC, Digital comparators, timers
 
 | Peripheral | Use |
+|------------|-----|
 | DMA | Used for continuous data transfer from the ADC to memory |
 | ADC | Converts the mic analog data to digital units from 0-4096 |
 | Digital comparators | One for each microphone to detect valid events |
