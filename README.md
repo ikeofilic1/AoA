@@ -1,20 +1,20 @@
 # Table of Contents
 
-1. [Project Background](#project-background)
-2. [Project Components](#project-components)
+1. [Project Background](#i---project-background)
+2. [Project Components](#ii---project-components)
    - [Hardware Components](#hardware-components)
    - [Software Components](#software-components)
-3. [Approach](#approach)
+3. [Approach](#iii---approach)
    - [General Design Considerations](#general-design-considerations)
-4. [Implementation](#implementation)
+4. [Implementation](#iv---implementation)
    - [Algorithm for Determining Mic Hits by Arrival of Sound](#algorithm-for-determining-mic-hits-by-arrival-of-sound)
    - [Extraction of Valid Event Data](#extraction-of-valid-event-data)
    - [Definition of a Valid Event](#definition-of-a-valid-event)
-   - [Calculation of Theta (θ)](#calculation-of-theta-θ)
-5. [Block Diagrams](#block-diagrams)
+   - [Calculation of Theta (θ)](#calculation-of-theta)
+5. [Block Diagrams](#v---block-diagrams)
    - [Hardware Block Diagram](#hardware-block-diagram)
    - [Software Block Diagram](#software-block-diagram)
-6. [Results and Discussion](#results-and-discussion)
+6. [Results and Discussion](#vi---results-and-discussion)
 
 # **I - Project Background**
 
@@ -75,19 +75,22 @@ After analyzing the code, some questions may arise about certain design decision
 1. Digital comparators were used instead of analog comparators so that low-noise events like everyday speech could be detected.
 2. The levels used were around 800-900. The reason that they are hard-coded is because the average system is not implemented yet. When averaging is implemented, a timer goes off once in a while to check the average sound level. It then sets the digital comparator comparison levels to those averages. This creates a more adaptive system.
 
-
 # **IV - Implementation**
 
+<a name="algorithm-for-determining-mic-hits-by-arrival-of-sound"></a>
 1. Algorithm for Determining Mic Hits by Arrival of Sound:
     - Utilize a Direct Memory Access (DMA) buffer to continuously read sensor data without losing information.
     - Use digital comparators to discern valid sound events from noise based on predefined thresholds, ensuring efficient use of computational resources.
     - Calculate the cross-correlation between pairs of microphone signals to determine the time delay between them.
     - Identify peaks in the cross-correlation function by finding the index with the highest elements.
+<a name="extraction-of-valid-event-data"></a>
 2. Extraction of Valid Event Data:
     - Extract valid event data by reading values from the DMA buffer, ensuring real-time processing without data loss.
     - Validate the identified events based on consistency across multiple microphones.
+<a name="definition-of-a-valid-event"></a>
 3. Definition of a Valid Event:
     - Define a valid event as sensor data read from the ADC that surpasses predefined thresholds set by digital comparators, indicating the presence of a sound of interest.
+<a name="calculation-of-theta"></a>
 4. Calculation of Theta (θ):
     - Calculate theta using a polynomial function based on the time differences of arrivals.
     - Use coefficients k1 and k2 obtained from field data by fitting a polynomial function using Python's polyfit function.
@@ -95,6 +98,7 @@ After analyzing the code, some questions may arise about certain design decision
 
 # **VI - Block Diagrams**
 
+<a name="hardware-block-diagram"></a>
 <p align="center">
   <img src="./images/hardware block diagram.png"/>
 </p>
@@ -102,7 +106,7 @@ After analyzing the code, some questions may arise about certain design decision
   <b>Figure 2: Hardware block diagram</b>
 </p>
 
-
+<a name="software-block-diagram"></a>
 <p align="center">
   <img height="400" src="./images/software block diagram.png"/>
 </p>
