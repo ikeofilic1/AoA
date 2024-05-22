@@ -1,25 +1,32 @@
+# Table of Contents
+
+1. [Project Background](#project-background)
+2. [Project Components](#project-components)
+   - [Hardware Components](#hardware-components)
+   - [Software Components](#software-components)
+3. [Approach](#approach)
+   - [General Design Considerations](#general-design-considerations)
+4. [Implementation](#implementation)
+   - [Algorithm for Determining Mic Hits by Arrival of Sound](#algorithm-for-determining-mic-hits-by-arrival-of-sound)
+   - [Extraction of Valid Event Data](#extraction-of-valid-event-data)
+   - [Definition of a Valid Event](#definition-of-a-valid-event)
+   - [Calculation of Theta (θ)](#calculation-of-theta-θ)
+5. [Block Diagrams](#block-diagrams)
+   - [Hardware Block Diagram](#hardware-block-diagram)
+   - [Software Block Diagram](#software-block-diagram)
+6. [Results and Discussion](#results-and-discussion)
+
 # **I - Project Background**
 
-The goal of this project is to design a low-cost, low-power device capable of solving the angle of arrival (AoA) problem on continuous audio. The AoA problem takes considerable computational effort, but the goal of this project is to use a very resource-constrained device to solve this problem with limited computational capabilities.
+This project aims to design a low-cost, low-power device that solves the angle of arrival (AoA) problem from a continuous audio source. The AoA problem takes considerable computational effort, but the aim is to use a very resource-constrained device with limited computational capabilities.
 
-# **II - Approach**
-
-The approach to solving the AoA problem is simple. The onboard Analog-to-Digital Converter (ADC) on the Tiva TM4C123GH6PM microcontroller is set up to constantly read microphone data at a 1Msps rate. The μDMA (micro direct memory access) controller is then programmed to continuously read the data storing it in 2 buffers alternating between both buffers so as not to lose any data. This is called pingpong.
-
-## General design considerations
-
-After analyzing the code, some questions may arise about certain design decisions. This is what I hope to answer in this section.
-
-1. Digital comparators were used instead of analog comparators so that low-noise events like everyday speech could be detected.
-2. The levels used were around 800-900. The reason that they are hard-coded is because the average system is not implemented yet. When averaging is implemented, a timer goes off every once in a while to check the average sound level. It then sets the digital comparator comparison levels to those averages. This creates a more adaptive system.
-
-# **III - Project components**
+# **II - Project components**
 
 We can divide the project into 2 parts, the hardware circuit–which provides a medium for solving the AoA problem–and the embedded C code that uses a combination of peripherals, registers, and logic to solve for angle of arrival. The software also provides a command interface for more programmability.
 
 ## Hardware components
 
-Microphones and conditioning circuits: 3 or 4 electret microphones are used to determine the angle in 2- or 3-dimensions of the noise source. A bias voltage is applied to each microphone to bias the internal FET device. The output is AC coupled to an active half-wave filter and amplifier circuit. The outputs of the 3 or 4 amplifiers (one LM2902 device) are connected to 4 analog microcontroller inputs.
+Microphones and conditioning circuits: 3 or 4 electret microphones are used to determine the angle of the noise source in 2 or 3 dimensions. A bias voltage is applied to each microphone to bias the internal FET device. The output is AC coupled to an active half-wave filter and amplifier circuit. The outputs of the 3 or 4 amplifiers (one LM2902 device) are connected to 4 analog microcontroller inputs.
 
 | Part | Use | Quantity |
 |------|-----|----------|
@@ -55,6 +62,19 @@ The peripherals used in this project are the DMA, ADC, Digital comparators, time
 | ADC | Converts the mic analog data to digital units from 0-4096 |
 | Digital comparators | One for each microphone to detect valid events |
 | Timer | Timer to stop the DMA after some time after a valid event occurs on one mic so that all the mics have a valid event and not just one. |
+
+
+# **III - Approach**
+
+The approach to solving the AoA problem is simple. The onboard Analog-to-Digital Converter (ADC) on the Tiva TM4C123GH6PM microcontroller is set up to constantly read microphone data at a 1Msps rate. The μDMA (micro direct memory access) controller is then programmed to continuously read the data storing it in 2 buffers alternating between both buffers so as not to lose any data. This is called pingpong.
+
+## General design considerations
+
+After analyzing the code, some questions may arise about certain design decisions. This is what I hope to answer in this section.
+
+1. Digital comparators were used instead of analog comparators so that low-noise events like everyday speech could be detected.
+2. The levels used were around 800-900. The reason that they are hard-coded is because the average system is not implemented yet. When averaging is implemented, a timer goes off once in a while to check the average sound level. It then sets the digital comparator comparison levels to those averages. This creates a more adaptive system.
+
 
 # **IV - Implementation**
 
