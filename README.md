@@ -18,7 +18,7 @@
 
 # **I - Project Background**
 
-This project aims to design a low-cost, low-power device that solves the angle of arrival (AoA) problem from a continuous audio source. The AoA problem takes considerable computational effort, but the aim is to use a very resource-constrained device with limited computational capabilities.
+This project aims to design a low-cost, low-power device that solves the [angle of arrival (AoA)](https://en.wikipedia.org/wiki/Angle_of_arrival) problem from a continuous audio source. The AoA problem takes considerable computational effort, but the aim is to use a very resource-constrained device with limited computational capabilities.
 
 # **II - Project components**
 
